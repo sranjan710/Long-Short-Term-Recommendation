@@ -10,21 +10,23 @@ class Singleton(object):
         return Singleton.__instance
     def get_flag(self):
         import tensorflow as tf
-        flags = tf.app.flags
+        flags = tf.compat.v1.flags
         flags.DEFINE_string("dataset", "qzone", "Comma-separated list of hostname:port pairs")
         flags.DEFINE_string("model_type", "joint", "Comma-separated list of hostname:port pairs")
-        flags.DEFINE_string("pretrained_model", "mf-25-0.12267.pkl", "Comma-separated list of hostname:port pairs")
+        #flags.DEFINE_string("pretrained_model", "mf-25-0.12267.pkl", "Comma-separated list of hostname:port pairs")
 
-        flags.DEFINE_string("train_file_name", "ratings_subset.csv", "Comma-separated list of hostname:port pairs")
+        # flags.DEFINE_string("train_file_name", "ratings_subset.csv", "Comma-separated list of hostname:port pairs")
+        flags.DEFINE_string("train_file_name", "u.data", "Comma-separated list of hostname:port pairs")
         flags.DEFINE_string("work_dir", "online_model", "Comma-separated list of hostname:port pairs")
         flags.DEFINE_integer("export_version", "80", "Comma-separated list of hostname:port pairs")
         flags.DEFINE_integer("subset_size", 100, "Comma-separated list of hostname:port pairs")
+        flags.DEFINE_string("split_data", "1998-03-08", "Comma-separated list of hostname:port pairs")
         flags.DEFINE_string("moviesLen_100k_split_data", "1998-03-08", "Comma-separated list of hostname:port pairs")
         flags.DEFINE_string("netflix_6_mouth_split_data", "2005-12-01", "Comma-separated list of hostname:port pairs")
 
         flags.DEFINE_integer("batch_size", 128, "Batch size of data while training")
         flags.DEFINE_integer("gan_k", 128, "Batch size of data while training")
-            
+
         flags.DEFINE_integer("user_delta", 7, "Batch size of data while training")
         flags.DEFINE_integer("item_delta", 7, "Batch size of data while training")  # TODO :  user_delta could not equals to item_delta
         flags.DEFINE_integer("re_rank_list_length", 25, "Batch size of data while training")
@@ -34,8 +36,8 @@ class Singleton(object):
         flags.DEFINE_integer("test_granularity_count", 2, "Batch size of data while training")
         flags.DEFINE_integer("mf_embedding_dim", 100, "Batch size of data while training")#16
         flags.DEFINE_integer("rnn_embedding_dim", 100, "Batch size of data while training")#40
-        flags.DEFINE_integer("g_epoch_size", 2, "Batch size of data while training")  
-        flags.DEFINE_integer("d_epoch_size", 1, "Batch size of data while training")  
+        flags.DEFINE_integer("g_epoch_size", 2, "Batch size of data while training")
+        flags.DEFINE_integer("d_epoch_size", 1, "Batch size of data while training")
 
 
         flags.DEFINE_float("learning_rate", 0.005, "Batch size of data while training")#0.0001
@@ -77,7 +79,7 @@ class Singleton(object):
                         "split":"1998-03-08",
                         "end"  :"3005-13-01"
                 }
-
+        #print(FLAGS.model_type)
         if FLAGS.dataset.startswith("movies"):
             FLAGS.threshold=0
         # # FLAGS.workernum=4

@@ -1,0 +1,80 @@
+# experiment configs
+experiment_name: "LRTM-movielens"
+
+
+dataset: 'qzone'
+model_type: 'joint'
+pretrained_model: "mf-25-0.12267.pkl"
+train_file_name: 'ratings_subset.csv'
+work_dir: 'online_model'
+export_version: '80'
+subset_size: 100
+moviesLen_100k_split_data: "1998-03-08"
+
+# basic configs
+batch_size: 128
+gan_k: 128
+n_epochs: 10
+seed: 0
+learning_rate: 0.005
+grad_clip: 0.1
+lambda: 0.05
+temperature: 5
+momentum: 1
+
+threshold: 300
+TestAccuracy: True
+pretrained: False
+is_sparse: True
+rating_flag: False
+dns: False
+lastone: True
+sparse_tensor: False
+pairwise: False
+
+video_length: 16
+image_size: 64
+re_rank_list_length: 25
+item_windows_size: 4
+user_windows_size: 4
+test_granularity_count: 2
+mf_embedding_dim: 100
+rnn_embedding_dim: 100
+g_epoch_size: 2
+d_epoch_size: 1
+
+movieslen100k:
+  start: "1000-12-01"
+  split: "1998-03-08"
+  end: "3005-13-01"
+    
+# dataset configs
+dataset: 
+  name: "mug"
+  path: "data/raw/mug"
+  n_workers: 8
+  number_limit: -1
+
+# model configs
+gen:
+  dim_z_content: 40
+  dim_z_motion: 10
+  dim_z_color: 10
+  ngf: 64
+  optimizer:
+    lr: 0.0002
+    decay: 0.00001
+idis: 
+  use_noise: False
+  noise_sigma: 0.1
+  ndf: 64
+  optimizer:
+    lr: 0.0002
+    decay: 0.00001
+vdis: 
+  use_noise: False
+  noise_sigma: 0.1
+  ndf: 64
+  optimizer:
+    lr: 0.0002
+    decay: 0.00001
